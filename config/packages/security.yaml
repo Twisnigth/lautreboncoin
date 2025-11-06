@@ -38,9 +38,10 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/annonces/new, roles: ROLE_ADMIN }
+        - { path: ^/annonces/new, roles: ROLE_USER }
         - { path: ^/annonces/new, roles: ROLE_USER }
         - { path: ^/user, roles: ROLE_ADMIN }
+        - { path: ^/categories, roles: ROLE_ADMIN }
 when@test:
     security:
         password_hashers:

@@ -3,14 +3,7 @@
 {% block title %}Annonces index{% endblock %}
 
 {% block body %}
-    <h1>Annonces index</h1>
-<a href="{{ path('app_register') }}" class="btn">Si tu n'as pas de compte, tu peux t'enregistrer ici</a>
-<a href="{{ path('app_login') }}" class="btn">Si tu possèdes déjà un compte, click ici!</a>
-{% if is_granted('ROLE_ADMIN') %}
-<a href="{{ path('app_categories_index') }}" class="btn">Voir les catégories</a>
-{% endif %}
-
-
+    <h1>Vos Annonces</h1>
 
     <table class="table">
         <thead>
@@ -56,5 +49,4 @@
     {% if is_granted('ROLE_USER') %}
     <a href="{{ path('app_annonces_new') }}">Create new</a>
     {% endif %}
-    
 {% endblock %}

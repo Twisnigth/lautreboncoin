@@ -79,4 +79,13 @@ final class AnnoncesController extends AbstractController
 
         return $this->redirectToRoute('app_annonces_index', [], Response::HTTP_SEE_OTHER);
     }
+    
+    #[Route('/myannonces', name: 'app_annonces_myannonces', methods: ['GET'])]
+    public function myannonces(AnnoncesRepository $annoncesRepository): Response
+    {
+        $annonces = $annoncesRepository->findBy(['user' => $this->getUser()]);
+        return $this->render('annonces/myannonces.html.twig', [
+            'annonces' => $annonces,
+        ]);
+    }
 }
