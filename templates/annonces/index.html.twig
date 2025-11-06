@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonces index{% endblock %}
+
+{% block body %}
+    <h1>Annonces index</h1>
+<a href="{{ path('app_register') }}" class="btn">Si tu n'as pas de compte, tu peux t'enregistrer ici</a>
+<a href="{{ path('app_login') }}" class="btn">Si tu possèdes déjà un compte, click ici!</a>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Photo</th>
+                <th>Localisation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for annonce in annonces %}
+            <tr>
+                <td>{{ annonce.id }}</td>
+                <td>{{ annonce.titre }}</td>
+                <td>{{ annonce.description }}</td>
+                <td>{{ annonce.prix }}</td>
+                <td>{{ annonce.photo }}</td>
+                <td>{{ annonce.localisation }}</td>
+                <td>
+                    <a href="{{ path('app_annonces_show', {'id': annonce.id}) }}">show</a>
+                    <a href="{{ path('app_annonces_edit', {'id': annonce.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_ADMIN', 'ROLE_USER') %}
+    <a href="{{ path('app_annonces_new') }}">Create new</a>
+    {% endif %}
+{% endblock %}
