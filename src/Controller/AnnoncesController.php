@@ -30,6 +30,7 @@ final class AnnoncesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $annonce->setUser($this->getUser());
             $entityManager->persist($annonce);
             $entityManager->flush();
 

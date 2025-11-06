@@ -36,6 +36,9 @@ class Annonces
     #[ORM\ManyToMany(targetEntity: Categories::class, inversedBy: 'annonces')]
     private Collection $categories;
 
+    #[ORM\ManyToOne(inversedBy: 'annonces')]
+    private ?User $User = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -126,6 +129,18 @@ class Annonces
     public function removeCategory(Categories $category): static
     {
         $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): static
+    {
+        $this->User = $User;
 
         return $this;
     }

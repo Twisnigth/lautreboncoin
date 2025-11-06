@@ -6,7 +6,7 @@
     <h1>Annonces index</h1>
 <a href="{{ path('app_register') }}" class="btn">Si tu n'as pas de compte, tu peux t'enregistrer ici</a>
 <a href="{{ path('app_login') }}" class="btn">Si tu possèdes déjà un compte, click ici!</a>
-    
+
     <table class="table">
         <thead>
             <tr>
@@ -16,6 +16,7 @@
                 <th>Prix</th>
                 <th>Photo</th>
                 <th>Localisation</th>
+                <th>utilisateurs</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -28,9 +29,16 @@
                 <td>{{ annonce.prix }}</td>
                 <td>{{ annonce.photo }}</td>
                 <td>{{ annonce.localisation }}</td>
+                {% if annonce.getUser() is not null %}
+                <td>{{ annonce.getUser().email }}</td>
+                {% else %}
+                <td>Utilisateur supprimé</td>
+                {% endif %}s
                 <td>
                     <a href="{{ path('app_annonces_show', {'id': annonce.id}) }}">show</a>
+                    {% if is_granted('ROLE_ADMIN', 'ROLE_USER') %}
                     <a href="{{ path('app_annonces_edit', {'id': annonce.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

@@ -21,7 +21,7 @@ class AnnoncesType extends AbstractType
             ->add('localisation')
             ->add('categories', EntityType::class, [
                 'class' => Categories::class,
-                'choice_label' => 'id',
+                'choice_label' => 'lebelle',
                 'multiple' => true,
             ])
         ;
